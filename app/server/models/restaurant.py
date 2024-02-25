@@ -9,6 +9,7 @@ class RestaurantSchema( BaseModel ):
 
     cnpj: str = Field( ..., min_length=14, max_length=14 )
     name: str = Field( ... )    
+    slug: str = Field( ... )
     category: str = Field( ... )
     adress: Adress = Field( ... )
     dishes: Dishes = Field( ... )
