@@ -7,7 +7,7 @@ from models.dishes import Dishes
 
 class RestaurantSchema( BaseModel ):
 
-    cnpj: str = Field( primary_key=True, min_length=14, max_length=14 )
+    cnpj: str = Field( ..., min_length=14, max_length=14 )
     name: str = Field( ... )    
     category: str = Field( ... )
     adress: Adress = Field( ... )
