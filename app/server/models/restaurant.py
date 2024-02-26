@@ -1,8 +1,8 @@
 from datetime import time
 from pydantic import BaseModel, Field
-from models.image import Image
-from models.adress import Adress
-from app.server.models.dish import Dish
+from server.models.image import Image
+from server.models.adress import Adress
+from server.models.dish import Dish
 
 
 class RestaurantSchema( BaseModel ):
