@@ -2,7 +2,7 @@ from datetime import time
 from pydantic import BaseModel, Field
 from models.image import Image
 from models.adress import Adress
-from models.dishes import Dishes
+from app.server.models.dish import Dish
 
 
 class RestaurantSchema( BaseModel ):
@@ -12,7 +12,7 @@ class RestaurantSchema( BaseModel ):
     slug: str = Field( ... )
     category: str = Field( ... )
     adress: Adress = Field( ... )
-    dishes: Dishes = Field( ... )
+    dishes: list[Dish] = Field( ... )
     description: str | None
     logo: Image | None
     opening_hours : dict[list[time]] | None
