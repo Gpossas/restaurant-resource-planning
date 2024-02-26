@@ -50,7 +50,7 @@ class RestaurantSchema( BaseModel ):
                     "saturday": [ ( time(7, 0), time(12, 0) ) ],
                     "sunday": [],
                 },
-                "opening_hours": ["Pix", "Credit card"]
+                "payment_methods": ["Pix", "Credit card"]
             }
         }
     }
