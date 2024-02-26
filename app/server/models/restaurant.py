@@ -12,11 +12,11 @@ class RestaurantSchema( BaseModel ):
     slug: str = Field( ... )
     category: str = Field( ... )
     adress: Adress = Field( ... )
-    dishes: list[Dish] = Field( ... )
-    description: str | None
-    logo: Image | None
-    opening_hours : dict[list[time]] | None
-    payment_methods: list[str] | None
+    # dishes: list[Dish] = Field( ... )
+    description: str | None = None
+    logo: Image | None = None
+    opening_hours : dict[str, list[tuple[time, time]]] | None = None
+    payment_methods: list[str] | None = None
 
     
     model_config = {
