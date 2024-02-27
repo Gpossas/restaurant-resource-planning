@@ -2,11 +2,12 @@ from datetime import time
 from pydantic import BaseModel, Field
 from server.models.image import Image
 from server.models.adress import Adress
-from server.models.dish import Dish
+from server.models.dish import Dish, PyObjectId
 
 
 class RestaurantSchema( BaseModel ):
 
+    id: PyObjectId = Field( default_factory=PyObjectId, alias="_id" )
     cnpj: str = Field( ..., min_length=14, max_length=14 )
     name: str = Field( ... )    
     slug: str = Field( ... )
