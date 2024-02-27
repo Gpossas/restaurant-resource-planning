@@ -1,4 +1,5 @@
 from datetime import time
+from typing import Optional
 from pydantic import BaseModel, Field
 from server.models.image import Image
 from server.models.address import Address
@@ -7,7 +8,7 @@ from server.models.dish import Dish, PyObjectId
 
 class RestaurantSchema( BaseModel ):
 
-    id: PyObjectId = Field( default_factory=PyObjectId, alias="_id" )
+    id: Optional[PyObjectId] = Field( default_factory=PyObjectId, alias="_id" )
     cnpj: str = Field( ..., min_length=14, max_length=14 )
     name: str = Field( ... )    
     slug: str = Field( ... )
