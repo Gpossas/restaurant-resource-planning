@@ -22,8 +22,9 @@ class RestaurantSchema( BaseModel ):
     model_config = {
         "json_schema_extra": {
             "examples": {
-                "cnpj": "12.345.678/0001-00",
+                "cnpj": "12345678000100",
                 "name": "Morama",
+                "slug": "morama",
                 "category": "Candy store",
                 "adress": {
                     "street": "Somewhere over the rainbow, 12",         
