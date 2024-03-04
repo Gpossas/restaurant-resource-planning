@@ -53,3 +53,19 @@ async def update_restaurant_data(
     return {
         "successfully updated data": update_data
     }
+
+
+@router.delete( 
+    "/{slug}/{id}", 
+    response_description="Delete a restaurant",
+    status_code=status.HTTP_204_NO_CONTENT
+)
+async def update_restaurant_data( 
+    id: str, 
+    slug: str,
+):
+    restaurant = restaurant_collection.find_one( { '_id': ObjectId( id ) } )
+    if not restaurant:
+        return HTTPException( status.HTTP_404_NOT_FOUND, detail="restaurant doesn't exist" )
+    
+    await restaurant_collection.delete_one( { '_id': ObjectId( id ) } )
