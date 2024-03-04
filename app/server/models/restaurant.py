@@ -3,7 +3,6 @@ from pydantic import BaseModel, Field
 from server.models.image import Image
 from server.models.address import Address
 from server.models.dish import Dish
-from uuid import uuid4
 
 
 class RestaurantSchema( BaseModel ):
