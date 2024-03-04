@@ -1,4 +1,5 @@
 from datetime import time
+from typing import Optional
 from pydantic import BaseModel, Field
 from server.models.image import Image
 from server.models.address import Address
@@ -62,6 +63,19 @@ class RestaurantSchema( BaseModel ):
             ]       
         }
     }
+
+
+class UpdateRestaurant( BaseModel ):
+
+    cnpj: str | None = None
+    name: str | None = None    
+    slug: str | None = None
+    category: str | None = None
+    address: Address | None = None
+    description: str | None = None
+    logo: Image | None = None
+    opening_hours : dict[str, list[tuple[time, time]]] | None = None
+    payment_methods: list[str] | None = None
 
 
 def restaurant_serializer( restaurant ) -> dict:
