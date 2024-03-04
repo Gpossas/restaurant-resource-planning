@@ -1,14 +1,13 @@
 from datetime import time
-from typing import Optional
 from pydantic import BaseModel, Field
 from server.models.image import Image
 from server.models.address import Address
-from server.models.dish import Dish, PyObjectId
+from server.models.dish import Dish
+from uuid import uuid4
 
 
 class RestaurantSchema( BaseModel ):
 
-    id: Optional[PyObjectId] = Field( default_factory=PyObjectId, alias="_id" )
     cnpj: str = Field( ..., min_length=14, max_length=14 )
     name: str = Field( ... )    
     slug: str = Field( ... )
@@ -63,4 +62,19 @@ class RestaurantSchema( BaseModel ):
                 }
             ]       
         }
+    }
+
+
+def restaurant_serializer( restaurant ) -> dict:
+    return {
+        "id": str( restaurant.get( '_id') ),
+        "cnpj": restaurant.get( 'cnpj' ),
+        "name": restaurant.get( 'name' ),
+        "slug": restaurant.get( 'slug' ),
+        "category": restaurant.get( 'category' ),
+        "address": restaurant.get( 'address' ) ,
+        "description": restaurant.get( 'description' ),
+        "logo": restaurant.get( 'logo' ),
+        "opening_hours": restaurant.get( 'opening_hours' ),
+        "payment_methods": restaurant.get( 'payment_methods' ),
     }
