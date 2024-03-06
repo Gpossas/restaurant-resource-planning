@@ -7,7 +7,7 @@ MONGO_DETAILS = config( "MONGO_DETAILS" )
 client = motor.motor_asyncio.AsyncIOMotorClient( MONGO_DETAILS )
 database = client.morama
 food_collection = database.get_collection( "foods" )
-
+restaurant_collection = database.get_collection( "restaurants" )
 
 # helpers
 
