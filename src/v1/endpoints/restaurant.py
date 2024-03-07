@@ -1,14 +1,15 @@
 from bson import ObjectId
 from fastapi import APIRouter, Body, status, HTTPException
 from fastapi.encoders import jsonable_encoder
-from server.models.restaurant import (
+from v1.schemas.restaurant import (
     RestaurantSchema,
     UpdateRestaurant,
     restaurant_serializer
 )
-from server.database import restaurant_collection
+from main import app
 
 router = APIRouter()
+restaurant_collection = app.mongodb_client.get_collection( 'restaurant' )
 
 @router.post( "/create", response_description="You created a restaurant! 🏠🍽️" )
 async def create_restaurant( restaurant: RestaurantSchema = Body( ... ) ):
