@@ -2,7 +2,7 @@ import uvicorn
 from fastapi import FastAPI
 import motor.motor_asyncio
 from decouple import config
-from src.v1.endpoints.restaurant import router as RestaurantRouter
+from v1.endpoints.restaurant import router as RestaurantRouter
 
 app = FastAPI()
 
@@ -17,6 +17,9 @@ def startup_db_client():
 @app.on_event( 'shutdown' )
 def shutdown_db_client():
     app.mongodb_client.close()
+
+def get_collection(collection: str):
+    return app.mongodb_client.get_collection(collection)
 
 
 app.include_router(RestaurantRouter, tags=["Restaurant"], prefix="/restaurants")
