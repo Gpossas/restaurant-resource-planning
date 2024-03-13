@@ -12,7 +12,7 @@ def startup_db_client():
     MONGO_DETAILS = config( "MONGO_DETAILS" )
     app.mongodb_client = motor.motor_asyncio.AsyncIOMotorClient( MONGO_DETAILS )
     app.database = app.mongodb_client.morama
-    print( 'Porject connected to mongodb 🍃' )
+    print( 'Project connected to mongodb 🍃' )
 
 @app.on_event( 'shutdown' )
 def shutdown_db_client():
