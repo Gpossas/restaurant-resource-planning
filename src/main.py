@@ -19,7 +19,7 @@ def shutdown_db_client():
     app.mongodb_client.close()
 
 def get_collection(collection: str):
-    return app.mongodb_client.get_collection(collection)
+    return app.database.get_collection(collection)
 
 
 app.include_router(RestaurantRouter, tags=["Restaurant"], prefix="/restaurants")

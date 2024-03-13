@@ -13,14 +13,14 @@ router = APIRouter()
 @router.post( "/create", response_description="You created a restaurant! 🏠🍽️" )
 async def create_restaurant( restaurant: RestaurantSchema = Body( ... ) ):
     restaurant = jsonable_encoder( restaurant )
-    new_restaurant = await get_collection( 'restaurant' ).insert_one( restaurant )
-    return restaurant_serializer( await get_collection( 'restaurant' ).find_one( { '_id': new_restaurant.inserted_id } ) )
+    new_restaurant = await get_collection('restaurants').insert_one( restaurant )
+    return restaurant_serializer( await get_collection('restaurants').find_one( { '_id': new_restaurant.inserted_id } ) )
 
 
 @router.get( "/", response_description="See all restaurants nearby! 🏠🍽️" )
 async def get_restaurants():
     restaurants = []
-    for document in await get_collection( 'restaurant' ).find().to_list( length=100 ):
+    for document in await get_collection('restaurants').find().to_list( length=100 ):
         restaurants.append( restaurant_serializer(document) )
     return restaurants
 
@@ -41,11 +41,11 @@ async def update_restaurant_data(
     if len( update_data ) < 1:
         return HTTPException( status.HTTP_422_UNPROCESSABLE_ENTITY, detail='at leat 1 field must be updated' )
     
-    restaurant = await get_collection( 'restaurant' ).find_one( { '_id': ObjectId( id ) } )
+    restaurant = await get_collection('restaurants').find_one( { '_id': ObjectId( id ) } )
     if not restaurant:
         return HTTPException( status.HTTP_404_NOT_FOUND, detail="restaurant doesn't exist" )
     
-    await get_collection( 'restaurant' ).update_one( 
+    await get_collection('restaurants').update_one( 
         { '_id': ObjectId( id ) },
         { '$set': update_data } 
     ) 
@@ -64,11 +64,11 @@ async def update_restaurant_data(
     id: str, 
     slug: str,
 ):
-    restaurant = get_collection( 'restaurant' ).find_one( { '_id': ObjectId( id ) } )
+    restaurant = get_collection('restaurants').find_one( { '_id': ObjectId( id ) } )
     if not restaurant:
         return HTTPException( status.HTTP_404_NOT_FOUND, detail="restaurant doesn't exist" )
     
-    await get_collection( 'restaurant' ).delete_one( { '_id': ObjectId( id ) } )
+    await get_collection('restaurants').delete_one( { '_id': ObjectId( id ) } )
 
 
 from main import get_collection
