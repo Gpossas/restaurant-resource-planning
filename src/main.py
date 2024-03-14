@@ -18,15 +18,8 @@ def startup_db_client():
 def shutdown_db_client():
     app.mongodb_client.close()
 
-def get_collection(collection: str):
-    return app.database.get_collection(collection)
-
 
 app.include_router(RestaurantRouter, tags=["Restaurant"], prefix="/restaurants")
-
-@app.get("/", tags=["Root"])
-async def read_root():
-    return {"message": "Hello world!"}
 
 
 if __name__ == "__main__":
