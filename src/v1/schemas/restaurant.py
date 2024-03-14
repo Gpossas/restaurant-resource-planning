@@ -1,9 +1,9 @@
 from datetime import time
 from typing import Optional
 from pydantic import BaseModel, Field
-from server.models.image import Image
-from server.models.address import Address
-from server.models.dish import Dish
+from v1.schemas.image import Image
+from v1.schemas.address import Address
+from v1.schemas.dish import Dish
 
 
 class RestaurantSchema( BaseModel ):
